@@ -6,7 +6,7 @@ describe("Tests para ExplorerService", () => {
 
     test("Requerimiento 1: Calcular todos los explorers en una misión", () => {
         const explorersInNode = ExplorerService.filterByMission(explorers, "node");
-        expect(explorersInNode.length).toBe(10);
+        expect(explorersInNode.length).toBe(1);
         expect(explorersInNode[0]).toMatchObject({mission: "node"});
     });
 
