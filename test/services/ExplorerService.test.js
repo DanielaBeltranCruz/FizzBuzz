@@ -1,5 +1,5 @@
 const ExplorerService = require("./../../lib/services/ExplorerService");
-const Reader = require("./../../lib/utils/Reader")
+const Reader = require("./../../lib/utils/Reader");
 
 describe("Tests para ExplorerService", () => {
     const explorers = Reader.readJsonFile("./explorers.json");
@@ -15,5 +15,5 @@ describe("Tests para ExplorerService", () => {
         const explorersInMission = ExplorerService.getAmountOfExplorersByMission(explorers, "node");
         console.log(explorersInMission);
         expect(explorersInMission).toBe(10);
-    })
+    });
 });
