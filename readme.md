@@ -35,7 +35,7 @@ Actualmente las últimas 3 validaciones se corren independientemente. Se necesit
 
 <details>
 <summary> app.js & explorers.json </summary>
-```app
+`app`
 
 ```javascript
 const fs = require("fs");
