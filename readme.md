@@ -1,6 +1,6 @@
 # 💥 Proyecto FIZZBUZZ
 
-** ✔️ Requerimientos**
+✔️ **Requerimientos**
 
 1. Refactorizar el script legado y rehacerlo con mucho cuidado ya que es información muy sensible. 
 2. Crea un API para usar la funcionalidad anterior:
@@ -33,19 +33,108 @@ Actualmente las últimas 3 validaciones se corren independientemente. Se necesit
 
 ### 📌 Scripts
 
-Refactorización de la lectura del archivo
-📁 Script: [`Reader.js`](https://github.com/DanielaBeltranCruz/FizzBuzz/blob/master/lib/utils/Reader.js)
+📁 Carpeta `lib/utils`: Aquí se tiene una clase para leer un archivo json. Refactorización de la lectura del archivo.
 
-Refactorización de la lógica que se ejecuta sobre la lista de explorers
-📁 Script: [`ExplorerService.js`](https://github.com/DanielaBeltranCruz/FizzBuzz/blob/master/lib/services/ExplorerService.js)
+**Script**: [`Reader.js`](https://github.com/DanielaBeltranCruz/FizzBuzz/blob/master/lib/utils/Reader.js)
 
-Refactorización de FizzBuzz Service
-📁 Script: [`FizzbuzzService.js`](https://github.com/DanielaBeltranCruz/FizzBuzz/blob/master/lib/services/FizzbuzzService.js)
+📁 Carpeta `lib/services`: Aquí se tienen dos clases para realizar toda la lógica que se necesita.
 
-Pruebas
-📁 Script: [`ExplorerService.test.js`](https://github.com/DanielaBeltranCruz/FizzBuzz/blob/master/test/services/ExplorerService.test.js)
+**Script**: [`ExplorerService.js`](https://github.com/DanielaBeltranCruz/FizzBuzz/blob/master/lib/services/ExplorerService.js)
+
+**Script**: [`FizzbuzzService.js`](https://github.com/DanielaBeltranCruz/FizzBuzz/blob/master/lib/services/FizzbuzzService.js)
+
+📁 Carpeta `test/services`: Aquí se tiene una prueba.
+
+**Script**: [`ExplorerService.test.js`](https://github.com/DanielaBeltranCruz/FizzBuzz/blob/master/test/services/ExplorerService.test.js)
+
+#### ⚡ Referencia 
+
+Enlace: [1_refactoring_fizzbuzz_parte1.md](https://github.com/LaunchX-InnovaccionVirtual/MissionNodeJS/blob/main/semanas/semana_4/1_refactoring_fizzbuzz_parte1.md "1_refactoring_fizzbuzz_parte1.md")
+
+## 💫 Parte 2. API con Express
+
+Estas son las clases que se tienen hasta ahora que permiten implementar la lógica legada anteriomente:
+
+```mermaid
+graph TD;
+    Reader-->ExplorerService;
+    FizzbuzzService;
+```
+
+Ahora se necesita crear otra clase que permita extender un puente entre funcionalidad y el server que se va a crear:
+
+```mermaid
+graph TD;
+    Reader-->ExplorerService;
+    FizzbuzzService;
+    ExplorerService-->ExplorerController
+    FizzbuzzService-->ExplorerController
+```
+
+Para que en el server que será el API solo se comuniqué a partir de ahí:
+
+```mermaid
+graph TD;
+    Reader-->ExplorerService;
+    FizzbuzzService;
+    ExplorerService-->ExplorerController
+    FizzbuzzService-->ExplorerController
+    ExplorerController-->Server
+```
+
+Para lograr lo anterior, se creó una carpeta nueva llamada `controllers` con un script llamado `ExplorerController.js`, cuya función es conectar la funcionalidad con el server.
+
+Posteriormente, se creó el server usando Express y un script llamado `server.js`, en dicho script se encuentra el código correspondiente al levantamiento del servidor así como de los endpoints requeridos para regresar información.
+
+### 📌 Scripts
+
+📁 Carpeta `lib/controllers`: Aquí se tiene una clase para conectar la funcionalidad con el server.
+
+**Script**: [`ExplorerController.js`](https://github.com/DanielaBeltranCruz/FizzBuzz/blob/master/lib/controllers/ExplorerController.js)
+
+📁 Carpeta `lib`: Aquí se tiene el código del server.
+
+**Script**: [`server.js`](https://github.com/DanielaBeltranCruz/FizzBuzz/blob/master/lib/server.js)
 
 
-# ⚡ Repositorio de referencia
+#### ⚡ Referencia 
 
-🔗 Enlace: [1_refactoring_fizzbuzz_parte1.md](https://github.com/LaunchX-InnovaccionVirtual/MissionNodeJS/blob/main/semanas/semana_4/1_refactoring_fizzbuzz_parte1.md "1_refactoring_fizzbuzz_parte1.md")
+Enlace: [2_api_fizzbuzz_parte2.md](https://github.com/LaunchX-InnovaccionVirtual/MissionNodeJS/blob/main/semanas/semana_4/2_api_fizzbuzz_parte2.md)
+
+## 💫 Parte 3. Nuevo requerimiento: Crear un endpoint para recibir un número y aplicar la validación del fizzbuzz
+
+| Endpoint | Request | Response |
+|---|---|---|
+| `localhost:3000/v1/fizzbuzz/:score` | `localhost:3000/v1/fizzbuzz/1` | `{score: 1, trick: 1}` |
+| `localhost:3000/v1/fizzbuzz/:score` | `localhost:3000/v1/fizzbuzz/3` | `{score: 3, trick: "Fizzz"}` |
+| `localhost:3000/v1/fizzbuzz/:score` | `localhost:3000/v1/fizzbuzz/5` | `{score: 5, trick: "Buzz"}` |
+| `localhost:3000/v1/fizzbuzz/:score` | `localhost:3000/v1/fizzbuzz/15` | `{score: 15, trick: "Fizzbuzz"}` |
+
+### Diseño actual
+
+```mermaid
+graph TD;
+    Reader-->ExplorerService;
+    FizzbuzzService;
+    ExplorerService-->ExplorerController
+    FizzbuzzService-->ExplorerController
+    ExplorerController-->Server
+```
+
+### Flujo de Nueva funcionalidad
+
+```mermaid
+graph TD;
+    FizzbuzzService-->ExplorerController;
+    ExplorerController-->Server
+```
+
+**Solución**
+
+Se creó la nueva funcionalidad dentro de FizzbuzzService, misma que es usada en el ExplorerController y de ahí es implementada en el server.
+
+#### ⚡ Referencia 
+
+Enlace: [3_nuevo_feature_fizzbuzz_parte3.md](https://github.com/LaunchX-InnovaccionVirtual/MissionNodeJS/blob/main/semanas/semana_4/3_nuevo_feature_fizzbuzz_parte3.md)
+
+
