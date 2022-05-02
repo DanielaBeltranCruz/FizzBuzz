@@ -2,8 +2,8 @@
 
 ✔️ **Requerimientos**
 
-1. Refactorizar el script legado y rehacerlo con mucho cuidado ya que es información muy sensible. 
-2. Crea un API para usar la funcionalidad anterior:
+1. Refactorizar el script legado y rehacerlo con mucho cuidado. 
+2. Crear un API para usar la funcionalidad anterior:
 
 | Endpoint | Request | Response |
 |---|---|---|
@@ -11,7 +11,7 @@
 | `localhost:3000/v1/explorers/amount/:mission` | `localhost:3000/v1/explorers/amount/node` | Deberás obtener la cantidad de explorers según la misión que enviaste (node o java) |
 | `localhost:3000/v1/explorers/usernames/:mission` | `localhost:3000/v1/explorers/usernames/node` | Deberás obtener la lista de usernames en la misión que enviaste (node o java) |
 
-3. Crea un endpoint para recibir un número y aplicar la validación del fizzbuzz. 
+3. Crear un endpoint para recibir un número y aplicar la validación del fizzbuzz. 
 
 ## 💫 Parte 1. Refactoring
 
@@ -47,7 +47,7 @@ Actualmente las últimas 3 validaciones se corren independientemente. Se necesit
 
 **Script**: [`ExplorerService.test.js`](https://github.com/DanielaBeltranCruz/FizzBuzz/blob/master/test/services/ExplorerService.test.js)
 
-#### ⚡ Referencia 
+#### 📎 Referencia 
 
 Enlace: [1_refactoring_fizzbuzz_parte1.md](https://github.com/LaunchX-InnovaccionVirtual/MissionNodeJS/blob/main/semanas/semana_4/1_refactoring_fizzbuzz_parte1.md "1_refactoring_fizzbuzz_parte1.md")
 
@@ -97,7 +97,21 @@ Posteriormente, se creó el server usando Express y un script llamado `server.js
 **Script**: [`server.js`](https://github.com/DanielaBeltranCruz/FizzBuzz/blob/master/lib/server.js)
 
 
-#### ⚡ Referencia 
+### 📍 Endpoints
+
+1. Endpoint para recibir un parámetro por query params, y regresar la lista de explorers filtrados por el parámetro: 
+
+![Imagen](https://github.com/DanielaBeltranCruz/FizzBuzz/blob/master/images/req_2.1.PNG)
+
+2. Endpoint para regresar la cantidad de explorers según la misión que se envíe:
+
+![Imagen](https://github.com/DanielaBeltranCruz/FizzBuzz/blob/master/images/req_2.2.PNG)
+
+3. Endpoint para regresar la lista de usernames de los explorers filtrados por la misión:
+
+![Imagen](https://github.com/DanielaBeltranCruz/FizzBuzz/blob/master/images/req_2.3.PNG)
+
+#### 📎 Referencia 
 
 Enlace: [2_api_fizzbuzz_parte2.md](https://github.com/LaunchX-InnovaccionVirtual/MissionNodeJS/blob/main/semanas/semana_4/2_api_fizzbuzz_parte2.md)
 
@@ -133,8 +147,17 @@ graph TD;
 
 Se creó la nueva funcionalidad dentro de FizzbuzzService, misma que es usada en el ExplorerController y de ahí es implementada en el server.
 
-#### ⚡ Referencia 
+![Imagen](https://github.com/DanielaBeltranCruz/FizzBuzz/blob/master/images/req_3.1.PNG)
+
+![Imagen](https://github.com/DanielaBeltranCruz/FizzBuzz/blob/master/images/req_3.2.PNG)
+
+![Imagen](https://github.com/DanielaBeltranCruz/FizzBuzz/blob/master/images/req_3.3.PNG)
+
+![Imagen](https://github.com/DanielaBeltranCruz/FizzBuzz/blob/master/images/req_3.4.PNG)
+
+#### 📎 Referencia 
 
 Enlace: [3_nuevo_feature_fizzbuzz_parte3.md](https://github.com/LaunchX-InnovaccionVirtual/MissionNodeJS/blob/main/semanas/semana_4/3_nuevo_feature_fizzbuzz_parte3.md)
+
 
 
